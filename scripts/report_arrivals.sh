@@ -7,8 +7,11 @@ do
     UUID=`uuidgen`
 
     FILENAME=`basename "$FILE"`
-    #mv $FILE ${$ARRIVAL_DIR%/}   
-    logger "File \"${ARRIVAL_DIR%/}/${UUID}_${FILENAME}\" has been created."
+    NEW_FILENAME="${ARRIVAL_DIR%/}/${UUID}_${FILENAME}"
+
+    mv "$FILE" "$NEW_FILENAME"
+
+    logger "File \"$NEW_FILENAME\" has been created."
     
     # TODO - Trigger push notification
 done
