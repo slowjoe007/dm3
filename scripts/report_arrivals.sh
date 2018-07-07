@@ -5,7 +5,10 @@
 inotifywait -mrq -e create --format %w%f "$ARRIVAL_DIR" | while read FILE
 do
     UUID=`uuidgen`
-    logger "File \"$FILE\" ($UUID) has been created."
+
+    FILENAME=`basename $FILE`
+    #mv $FILE ${$ARRIVAL_DIR%/}   
+    logger "File \"${$ARRIVAL_DIR%/}/${UUID}_${FILENAME}\" has been created."
     
     # TODO - Trigger push notification
 done
